@@ -5,53 +5,119 @@
 <head>
   <meta charset="UTF-8">
   <title>AI-Powered Detection and Emergency Response System (AIDERS)</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     body {
       font-family: 'Helvetica Neue', Arial, sans-serif;
       background-color: #8cb3e6;
       color: #333;
       line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
     }
     header, footer {
-      background-color: #8cb3e6;
+      background-color:  #8cb3e6;
       color: #fff;
       padding: 20px;
       text-align: center;
     }
     main {
       padding: 30px;
-      max-width: 800px;
-      margin: 40px auto;
+      max-width: 1200px;
+      margin: 0 auto;
       background-color: #ffffff;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      text-align: center;
     }
-    h1, h2 {
-      color: #0047ab;
+    .hero-section {
+      position: relative;
+      height: 500px;
+      margin-bottom: 50px;
+      overflow: hidden;
+      border-radius: 12px;
+      background-color: #e6f2ff;
+    }
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ffffff;
+      text-align: center;
+      max-width: 700px;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin: 0;
+      color: #fff;
+    }
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-top: 20px;
     }
     button {
       background-color: #0047ab;
       color: #fff;
-      padding: 12px 24px;
+      padding: 15px 30px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       font-size: 16px;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.3s;
     }
     button:hover {
       background-color: #003a8c;
+      transform: scale(1.05);
     }
-    .video-placeholder {
-      width: 100%;
-      height: 400px;
-      background-color: #d3d3d3;
+    .features-section {
+      padding: 50px 0;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      color: #333;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      text-align: center;
+    }
+    .feature {
+      margin: 20px;
+      width: calc(33.33% - 40px);
+      padding: 20px;
+      background-color: #f9fafc;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+    .feature:hover {
+      transform: translateY(-10px);
+    }
+    .feature i {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #0047ab;
+    }
+    .see-more {
+      margin-top: 40px;
+      text-align: center;
+    }
+    .see-more-btn {
+      background-color: #0047ab;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    .see-more-btn:hover {
+      background-color: #003a8c;
+      transform: scale(1.05);
+    }
+    footer {
+      font-size: 14px;
     }
   </style>
 </head>
@@ -59,16 +125,84 @@
 
   {{> header}}
 
-  <main>
-    <h1>Welcome to AIDERS</h1>
-    <p>AIDERS (AI-powered Detection and Emergency Response System) is an innovative solution designed to provide peace of mind to individuals and families dealing with epilepsy or other medical conditions. Our state-of-the-art AI technology ensures real-time monitoring and immediate emergency response, safeguarding our users and providing timely help whenever needed.</p>
-    <div class="video-placeholder">Video Placeholder (Coming Soon)</div>
-    <p>With AIDERS, you are never alone. Our system continuously monitors your environment and immediately provides guidance or contacts emergency services in critical situations. Join the future of healthcare and experience unparalleled safety and reliability.</p>
-    <button onclick="window.location.href='/get-started';">Get Started</button>
-  </main>
+  <!-- Hero Section with 3D Animation -->
+  <section class="hero-section">
+    <div id="hero-animation"></div>
+    <div class="hero-content">
+      <h1>Welcome to AIDERS</h1>
+      <p>An AI-powered monitoring and emergency response system designed to keep you safe and provide peace of mind.</p>
+      <button onclick="window.location.href='/get-started';">Get Started</button>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <h2>Why Choose AIDERS?</h2>
+    <div class="feature">
+      <i class="fas fa-shield-alt"></i>
+      <h3>Real-Time Detection</h3>
+      <p>Leveraging YOLOv8, AIDERS provides real-time detection of medical emergencies with advanced AI technology.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-bell"></i>
+      <h3>Immediate Alerts</h3>
+      <p>Immediate guidance to patients and caregivers to ensure swift action when it's needed the most.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-user-shield"></i>
+      <h3>Privacy & Security</h3>
+      <p>All video data is processed locally to maintain privacy and security, adhering to the highest standards.</p>
+    </div>
+  </section>
+
+  <!-- See More Section -->
+  <div class="see-more">
+    <p>Want to learn more about our features?</p>
+    <a href="/features" class="see-more-btn">See More of Our Features Here</a>
+  </div>
 
   {{> footer}}
 
-  <script src="/js/main.js"></script>
+  <!-- Include Three.js library -->
+  <script src="/js/three.min.js"></script>
+  <!-- Include main script -->
+  <script>
+    // Setting up the scene, camera, and renderer for the hero animation
+    const heroScene = new THREE.Scene();
+    const heroCamera = new THREE.PerspectiveCamera(75, window.innerWidth / 500, 0.1, 1000);
+    const heroRenderer = new THREE.WebGLRenderer({ antialias: true });
+    heroRenderer.setSize(window.innerWidth, 500);
+    document.getElementById('hero-animation').appendChild(heroRenderer.domElement);
+
+    // Create a DNA-like double helix structure in the hero section
+    const helixGroup = new THREE.Group();
+    const sphereGeometry = new THREE.SphereGeometry(0.2, 32, 32);
+    const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    for (let i = 0; i <= 20; i++) {
+      const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+      const angle = i * 0.5;
+      sphere.position.set(Math.sin(angle) * 2, i - 10, Math.cos(angle) * 2);
+      helixGroup.add(sphere);
+    }
+    heroScene.add(helixGroup);
+
+    heroCamera.position.z = 10;
+
+    // Animation loop for the hero section
+    function heroAnimate() {
+      requestAnimationFrame(heroAnimate);
+      helixGroup.rotation.y += 0.01;
+      heroRenderer.render(heroScene, heroCamera);
+    }
+    heroAnimate();
+
+    // Responsive resizing for hero animation
+    window.addEventListener('resize', () => {
+      const canvasWidth = window.innerWidth < 1200 ? window.innerWidth : 1200;
+      heroRenderer.setSize(canvasWidth, 500);
+      heroCamera.aspect = canvasWidth / 500;
+      heroCamera.updateProjectionMatrix();
+    });
+  </script>
 </body>
 </html>

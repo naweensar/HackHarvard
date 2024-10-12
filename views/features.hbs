@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <title>AIDERS: Features</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <link rel="stylesheet" href="/css/styles.css">
   <style>
     body {
@@ -12,71 +13,167 @@
       background-color: #8cb3e6;
       color: #333;
       line-height: 1.6;
+      margin: 0;
+      overflow: hidden;
     }
     header, footer {
       background-color: #8cb3e6;
       color: #fff;
       padding: 20px;
       text-align: center;
+      position: relative;
+      z-index: 5;
+    }
+    .content-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+      z-index: 5;
+      padding: 20px 10px;
     }
     main {
-      padding: 30px;
-      max-width: 800px;
-      margin: 40px auto;
-      background-color: #ffffff;
+      max-width: 1000px;
+      margin: 50px auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     }
-    h1, h2, h3 {
+    h1 {
       color: #0047ab;
+      text-align: center;
+    }
+    h2 {
+      color: #ff9800; /* Complementary color to the blue background */
+      margin-bottom: 10px;
+    }
+    .feature-section {
+      margin-bottom: 40px;
+      padding: 10px;
+    }
+    .highlight {
+      color: #00b4d8;
+      font-weight: bold;
     }
     ul {
-      list-style: disc;
+      list-style-type: disc;
       margin-left: 20px;
     }
-    p {
-      margin-bottom: 15px;
+    #three-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
 
-  {{> header}}
+  <!-- 3D Animation Background -->
+  <canvas id="three-animation"></canvas>
 
-  <main>
-    <h1>Features of AIDERS</h1>
-    <p>AIDERS is an AI-driven healthcare monitoring system designed to provide continuous and proactive patient safety features. Leveraging advanced AI technology, AIDERS brings the following capabilities:</p>
+  <div class="content-container">
+    {{> header}}
 
-    <h2>Key Features</h2>
-    <h3>1. Real-Time Detection and Alerts</h3>
-    <p>AIDERS uses YOLOv8 object detection to monitor real-time video feeds, identifying behaviors or movements indicative of medical emergencies like seizures or falls. Once a potential event is detected, the system provides on-screen alerts to prompt action.</p>
+    <main>
+      <h1>Features of AIDERS</h1>
+      <p>AIDERS is an AI-driven healthcare monitoring system designed to provide continuous and proactive patient safety features. Leveraging advanced AI technology, AIDERS brings the following capabilities:</p>
 
-    <h3>2. Interactive Patient Prompts</h3>
-    <p>In order to reduce the occurrence of false alarms, AIDERS is designed to interact with patients during critical moments, providing options to confirm their well-being or request help. If a user responds indicating they are okay, the alert is dismissed, thereby avoiding unnecessary emergency responses.</p>
+      <!-- Feature Sections -->
+      <section class="feature-section" id="feature1">
+        <h2>1. Real-Time Detection and Alerts</h2>
+        <p>AIDERS uses <span class="highlight">YOLOv8 object detection</span> to monitor real-time video feeds, identifying behaviors or movements indicative of medical emergencies like seizures or falls. The system is equipped with the following capabilities:</p>
+        <ul>
+          <li><strong>Continuous Monitoring:</strong> AIDERS uses camera feeds to observe patients at all times.</li>
+          <li><strong>High Precision Detection:</strong> Advanced AI detects unusual behaviors with a low false-positive rate.</li>
+          <li><strong>On-Screen Alerts:</strong> Visual notifications are provided to prompt immediate action from the user or caregiver.</li>
+        </ul>
+      </section>
 
-    <h3>3. Automated Emergency Contact Alerts</h3>
-    <p>In the event that a patient does not respond, AIDERS automatically contacts emergency services, providing crucial information like the patient's current location, medical history, and contact details of caregivers. Emergency contacts designated by the patient are also informed through SMS or email.</p>
+      <section class="feature-section" id="feature2">
+        <h2>2. Interactive Patient Prompts</h2>
+        <p>To reduce unnecessary emergency responses, AIDERS is designed to <span class="highlight">interact with patients</span> during critical moments. Key features include:</p>
+        <ul>
+          <li><strong>Patient Response Verification:</strong> The system prompts the patient to confirm their condition if suspicious activity is detected.</li>
+          <li><strong>Reducing False Alarms:</strong> Alerts are dismissed if the patient responds affirmatively, ensuring emergency services are only contacted when necessary.</li>
+          <li><strong>Audio and Visual Prompts:</strong> Both audio and visual cues are used to capture the patient's attention.</li>
+        </ul>
+      </section>
 
-    <h3>4. Customizable Alert Settings</h3>
-    <p>AIDERS can be customized according to the user's preference. Patients can set their own sensitivity levels, response times, and preferred contacts for notifications during an emergency. The system adapts to each individual’s medical history and needs.</p>
+      <section class="feature-section" id="feature3">
+        <h2>3. Automated Emergency Contact Alerts</h2>
+        <p>If a patient does not respond, AIDERS automatically contacts <span class="highlight">emergency services</span> and provides relevant information to expedite assistance. The automated features include:</p>
+        <ul>
+          <li><strong>Emergency Notifications:</strong> Designated contacts receive SMS or email alerts regarding the patient's status.</li>
+          <li><strong>Location Tracking:</strong> Provides precise patient location details to responders for swift intervention.</li>
+          <li><strong>Medical History Sharing:</strong> Sends crucial medical information to emergency personnel for informed decision-making.</li>
+        </ul>
+      </section>
 
-    <h3>5. Data Privacy and Security</h3>
-    <p>We prioritize the safety and privacy of user data. AIDERS processes all video data locally on the user’s device, ensuring that no data is sent to external servers. This approach complies with healthcare data regulations such as HIPAA and ensures user confidentiality at all times.</p>
+      <section class="feature-section" id="feature4">
+        <h2>4. Customizable Alert Settings</h2>
+        <p>AIDERS allows users to <span class="highlight">customize alert settings</span> based on their personal needs. The customization includes:</p>
+        <ul>
+          <li><strong>Adjustable Sensitivity:</strong> Sensitivity of detection can be adjusted according to the patient's health condition.</li>
+          <li><strong>Response Time Settings:</strong> Users can define the time allowed for response before emergency services are notified.</li>
+          <li><strong>Emergency Contact Preferences:</strong> Users can specify and manage the contacts to be notified during emergencies.</li>
+        </ul>
+      </section>
 
-    <h2>How AIDERS Works</h2>
-    <p>AIDERS utilizes YOLOv8's object detection to analyze live video feeds for identifying abnormal behaviors or events that might indicate a medical emergency. Upon detection, the system provides instructions, such as requesting the patient to confirm their condition, guiding nearby caregivers, or autonomously contacting emergency services if necessary.</p>
+      <section class="feature-section" id="feature5">
+        <h2>5. Data Privacy and Security</h2>
+        <p>At AIDERS, data privacy is of utmost importance. We ensure <span class="highlight">local processing</span> of all video data, which ensures that:</p>
+        <ul>
+          <li><strong>Local Data Processing:</strong> All analysis is conducted on the user’s device, with no external data transmission.</li>
+          <li><strong>HIPAA Compliance:</strong> Compliance with healthcare data regulations to maintain patient confidentiality.</li>
+          <li><strong>End-to-End Encryption:</strong> Patient data is encrypted to protect against unauthorized access.</li>
+        </ul>
+      </section>
+    </main>
 
-    <h2>Benefits for Patients and Caregivers</h2>
-    <p>By using AIDERS, patients and caregivers can experience a number of benefits:</p>
-    <ul>
-      <li><strong>Timely Intervention:</strong> AIDERS ensures that emergencies are detected in real-time, allowing for swift intervention and significantly reducing the risks of further health complications.</li>
-      <li><strong>Greater Independence:</strong> Patients are empowered to live independently while being continuously monitored for their safety.</li>
-      <li><strong>Reassurance for Caregivers:</strong> Caregivers are provided with real-time updates, which reduces anxiety and provides peace of mind when they are not present.</li>
-    </ul>
-  </main>
+    {{> footer}}
+  </div>
 
-  {{> footer}}
+  <!-- 3D Animation Setup -->
+  <script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-animation'), alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.position.z = 15;
 
-  <script src="/js/main.js"></script>
+    // Create rotating torus geometry for a dynamic background effect
+    const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
+    const material = new THREE.MeshStandardMaterial({ color: 0x0047ab, wireframe: true });
+    const torus = new THREE.Mesh(geometry, material);
+    scene.add(torus);
+
+    // Add lights for better visual effect
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const pointLight = new THREE.PointLight(0xffffff, 1);
+    pointLight.position.set(15, 15, 15);
+    scene.add(ambientLight, pointLight);
+
+    // Animation Loop
+    function animate() {
+      requestAnimationFrame(animate);
+      torus.rotation.x += 0.005;
+      torus.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Responsive resizing for the canvas
+    window.addEventListener('resize', () => {
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+    });
+  </script>
 </body>
 </html>
