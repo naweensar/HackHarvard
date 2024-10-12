@@ -19,7 +19,7 @@
       overflow-x: hidden;
     }
     header, footer {
-      background-color:  #8cb3e6;
+      background-color: #8cb3e6;
       color: #fff;
       padding: 20px;
       text-align: center;
@@ -74,21 +74,28 @@
       background-color: #003a8c;
       transform: scale(1.05);
     }
-    .features-section {
+    .features-container {
       padding: 50px 0;
+      text-align: center;
+    }
+    .features-section {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
       text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
     }
     .feature {
       margin: 20px;
-      width: calc(33.33% - 40px);
+      flex: 1 1 calc(33.33% - 40px);
       padding: 20px;
       background-color: #f9fafc;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s;
+      min-width: 300px;
+      max-width: 350px;
     }
     .feature:hover {
       transform: translateY(-10px);
@@ -136,24 +143,26 @@
   </section>
 
   <!-- Features Section -->
-  <section class="features-section">
+  <div class="features-container">
     <h2>Why Choose AIDERS?</h2>
-    <div class="feature">
-      <i class="fas fa-shield-alt"></i>
-      <h3>Real-Time Detection</h3>
-      <p>Leveraging YOLOv8, AIDERS provides real-time detection of medical emergencies with advanced AI technology.</p>
-    </div>
-    <div class="feature">
-      <i class="fas fa-bell"></i>
-      <h3>Immediate Alerts</h3>
-      <p>Immediate guidance to patients and caregivers to ensure swift action when it's needed the most.</p>
-    </div>
-    <div class="feature">
-      <i class="fas fa-user-shield"></i>
-      <h3>Privacy & Security</h3>
-      <p>All video data is processed locally to maintain privacy and security, adhering to the highest standards.</p>
-    </div>
-  </section>
+    <section class="features-section">
+      <div class="feature">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Real-Time Detection</h3>
+        <p>Leveraging YOLOv8, AIDERS provides real-time detection of medical emergencies with advanced AI technology.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-bell"></i>
+        <h3>Immediate Alerts</h3>
+        <p>Immediate guidance to patients and caregivers to ensure swift action when it's needed the most.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-user-shield"></i>
+        <h3>Privacy & Security</h3>
+        <p>All video data is processed locally to maintain privacy and security, adhering to the highest standards.</p>
+      </div>
+    </section>
+  </div>
 
   <!-- See More Section -->
   <div class="see-more">
