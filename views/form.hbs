@@ -1,0 +1,111 @@
+{{!-- form.handlebars --}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AIDERS: Sign Up to Use the Service</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #8cb3e6;
+      color: #333;
+    }
+    header, footer {
+      background-color: #8cb3e6;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    main {
+      padding: 20px;
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    form label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #0047ab;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003a8c;
+    }
+  </style>
+</head>
+<body>
+
+  {{> header}}
+
+  <main>
+    <h2>Sign Up to Use the Service</h2>
+    <p>By signing up, you agree to allow AIDERS to use the camera on your device for monitoring purposes. If you are in a dangerous situation, the system will notify your designated emergency contacts. You will also receive follow-up email documentation.</p>
+    <p><a href="/terms.pdf" target="_blank">Read Terms and Conditions</a></p>
+    <form action="/register" method="POST">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required><br><br>
+      
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required><br><br>
+
+      <div id="emergency-contacts">
+        <label for="contact1-phone">Emergency Contact 1 - Phone:</label>
+        <input type="tel" id="contact1-phone" name="contacts[0][phone]" required><br><br>
+        
+        <label for="contact1-email">Emergency Contact 1 - Email:</label>
+        <input type="email" id="contact1-email" name="contacts[0][email]" required><br><br>
+      </div>
+      <button type="button" onclick="addContact()">Add More Contacts</button><br><br>
+
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+
+  {{> footer}}
+
+  <script>
+    let contactCounter = 1;
+    function addContact() {
+      const contactsDiv = document.getElementById('emergency-contacts');
+      const newContact = document.createElement('div');
+      newContact.id = `contact${contactCounter}`;
+      newContact.innerHTML = `
+        <label for="contact${contactCounter}-phone">Emergency Contact ${contactCounter + 1} - Phone:</label>
+        <input type="tel" id="contact${contactCounter}-phone" name="contacts[${contactCounter}][phone]" required><br><br>
+
+        <label for="contact${contactCounter}-email">Emergency Contact ${contactCounter + 1} - Email:</label>
+        <input type="email" id="contact${contactCounter}-email" name="contacts[${contactCounter}][email]" required><br><br>
+        
+        <button type="button" onclick="removeContact(${contactCounter})">Remove Contact ${contactCounter + 1}</button><br><br>
+      `;
+      contactsDiv.appendChild(newContact);
+      contactCounter++;
+    }
+
+    function removeContact(id) {
+      const contactDiv = document.getElementById(`contact${id}`);
+      if (contactDiv) {
+        contactDiv.remove();
+      }
+    }
+  </script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

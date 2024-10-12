@@ -1,0 +1,82 @@
+{{!-- features.handlebars --}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AIDERS: Features</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #8cb3e6;
+      color: #333;
+      line-height: 1.6;
+    }
+    header, footer {
+      background-color: #8cb3e6;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    main {
+      padding: 30px;
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+    h1, h2, h3 {
+      color: #0047ab;
+    }
+    ul {
+      list-style: disc;
+      margin-left: 20px;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  {{> header}}
+
+  <main>
+    <h1>Features of AIDERS</h1>
+    <p>AIDERS is an AI-driven healthcare monitoring system designed to provide continuous and proactive patient safety features. Leveraging advanced AI technology, AIDERS brings the following capabilities:</p>
+
+    <h2>Key Features</h2>
+    <h3>1. Real-Time Detection and Alerts</h3>
+    <p>AIDERS uses YOLOv8 object detection to monitor real-time video feeds, identifying behaviors or movements indicative of medical emergencies like seizures or falls. Once a potential event is detected, the system provides on-screen alerts to prompt action.</p>
+
+    <h3>2. Interactive Patient Prompts</h3>
+    <p>In order to reduce the occurrence of false alarms, AIDERS is designed to interact with patients during critical moments, providing options to confirm their well-being or request help. If a user responds indicating they are okay, the alert is dismissed, thereby avoiding unnecessary emergency responses.</p>
+
+    <h3>3. Automated Emergency Contact Alerts</h3>
+    <p>In the event that a patient does not respond, AIDERS automatically contacts emergency services, providing crucial information like the patient's current location, medical history, and contact details of caregivers. Emergency contacts designated by the patient are also informed through SMS or email.</p>
+
+    <h3>4. Customizable Alert Settings</h3>
+    <p>AIDERS can be customized according to the user's preference. Patients can set their own sensitivity levels, response times, and preferred contacts for notifications during an emergency. The system adapts to each individual’s medical history and needs.</p>
+
+    <h3>5. Data Privacy and Security</h3>
+    <p>We prioritize the safety and privacy of user data. AIDERS processes all video data locally on the user’s device, ensuring that no data is sent to external servers. This approach complies with healthcare data regulations such as HIPAA and ensures user confidentiality at all times.</p>
+
+    <h2>How AIDERS Works</h2>
+    <p>AIDERS utilizes YOLOv8's object detection to analyze live video feeds for identifying abnormal behaviors or events that might indicate a medical emergency. Upon detection, the system provides instructions, such as requesting the patient to confirm their condition, guiding nearby caregivers, or autonomously contacting emergency services if necessary.</p>
+
+    <h2>Benefits for Patients and Caregivers</h2>
+    <p>By using AIDERS, patients and caregivers can experience a number of benefits:</p>
+    <ul>
+      <li><strong>Timely Intervention:</strong> AIDERS ensures that emergencies are detected in real-time, allowing for swift intervention and significantly reducing the risks of further health complications.</li>
+      <li><strong>Greater Independence:</strong> Patients are empowered to live independently while being continuously monitored for their safety.</li>
+      <li><strong>Reassurance for Caregivers:</strong> Caregivers are provided with real-time updates, which reduces anxiety and provides peace of mind when they are not present.</li>
+    </ul>
+  </main>
+
+  {{> footer}}
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

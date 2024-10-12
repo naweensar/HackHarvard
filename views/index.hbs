@@ -1,6 +1,74 @@
 {{!-- index.handlebars --}}
 
-<main>
-  <h2>Home Page</h2>
-  <p>This is the main content of your application.</p>
-</main>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI-Powered Detection and Emergency Response System (AIDERS)</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #8cb3e6;
+      color: #333;
+      line-height: 1.6;
+    }
+    header, footer {
+      background-color: #8cb3e6;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    main {
+      padding: 30px;
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+    h1, h2 {
+      color: #0047ab;
+    }
+    button {
+      background-color: #0047ab;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #003a8c;
+    }
+    .video-placeholder {
+      width: 100%;
+      height: 400px;
+      background-color: #d3d3d3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  {{> header}}
+
+  <main>
+    <h1>Welcome to AIDERS</h1>
+    <p>AIDERS (AI-powered Detection and Emergency Response System) is an innovative solution designed to provide peace of mind to individuals and families dealing with epilepsy or other medical conditions. Our state-of-the-art AI technology ensures real-time monitoring and immediate emergency response, safeguarding our users and providing timely help whenever needed.</p>
+    <div class="video-placeholder">Video Placeholder (Coming Soon)</div>
+    <p>With AIDERS, you are never alone. Our system continuously monitors your environment and immediately provides guidance or contacts emergency services in critical situations. Join the future of healthcare and experience unparalleled safety and reliability.</p>
+    <button onclick="window.location.href='/get-started';">Get Started</button>
+  </main>
+
+  {{> footer}}
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
