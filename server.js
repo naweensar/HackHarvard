@@ -1,21 +1,17 @@
-// server.js
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
 
-const express = require('express');
-const exphbs  = require('express-handlebars');
-const path = require('path');
-
-// Initialize Express app
 const app = express();
 
-// Set up Handlebars middleware
-app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+app.set('view engine', 'hbs');
 
-// Serve static files from the 'public' directory
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 app.use(express.static(path.join(__dirname, 'public')));
-
 // Import routes
-const indexRoutes = require('./routes/index');
+import indexRoutes from './routes/index.js';  // Use `import` for ES modules
 app.use('/', indexRoutes);
 
 // Define the port

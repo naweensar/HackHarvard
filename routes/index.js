@@ -1,6 +1,4 @@
-// index.js
-
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
 // Home route
@@ -8,4 +6,4 @@ router.get('/', (req, res) => {
   res.render('index');
 });
 
-module.exports = router;
+export default router;  // Use ES module export
