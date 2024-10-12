@@ -24,6 +24,6 @@ http://localhost:3000
 *Team Members*
 
 Aymane Omari
-Mingyu (Karwin) Shun
+Mingyu (Kerwin) Shen
 Naween Sarwani
 Richard 
