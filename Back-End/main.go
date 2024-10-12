@@ -9,6 +9,7 @@ import (
 	"net/smtp"
 	"net/url"
 	"os"
+	"strings"
 
 	"github.com/joho/godotenv"
 )
@@ -358,6 +359,73 @@ func helloWord(w http.ResponseWriter, req *http.Request) {
 	w.Write([]byte("Hello World"))
 }
 
+func uploadFile(w http.ResponseWriter, r *http.Request) {
+	// Step 1: Create a temporary directory
+	/*err := os.Mkdir("Uploads", 0755)
+	if err != nil {
+		fmt.Println("Error creating temp directory:", err)
+		return
+	}*/
+
+	// Step 2: Ensure the temp directory gets removed once the program finishes
+
+	r.ParseMultipartForm(10 << 20)
+
+	// FormFile returns the first file for the given key `myFile`
+	file, handler, err := r.FormFile("AI_image_model")
+	if err != nil {
+		fmt.Println("Error Retrieving the File")
+		fmt.Println(err)
+		http.Error(w, "Error Retrieving the File", http.StatusInternalServerError)
+		return
+	}
+	defer file.Close()
+
+	fmt.Printf("Uploaded File: %+v\n", handler.Filename)
+	pieces := strings.Split(handler.Filename, ".")
+	fileType := pieces[len(pieces)-1]
+	fmt.Printf("Uploaded File: %+v\n", handler.Filename)
+	fmt.Println("File type of file is " + fileType)
+	fmt.Printf("File Size: %+v\n", handler.Size)
+	fmt.Printf("MIME Header: %+v\n", handler.Header)
+
+	// Create a temporary file within our temp directory that follows a particular naming pattern
+	tempFile, err := os.CreateTemp("Uploads", "upload-*."+fileType)
+	if err != nil {
+		fmt.Println("Error creating temp file:", err)
+		http.Error(w, "Error creating temp file", http.StatusInternalServerError)
+		return
+	}
+	defer tempFile.Close()
+
+	// Read all of the contents of the uploaded file into a byte array
+	fileBytes, err := io.ReadAll(file)
+	if err != nil {
+		fmt.Println("Error reading file bytes:", err)
+		http.Error(w, "Error reading file bytes", http.StatusInternalServerError)
+		return
+	}
+
+	// Write this byte array to the temporary file
+	_, err = tempFile.Write(fileBytes)
+	if err != nil {
+		fmt.Println("Error writing to file:", err)
+		http.Error(w, "Error writing to file", http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Printf("Successfully wrote to file: %s\n", tempFile.Name())
+
+	// Close the file after writing
+	err = tempFile.Close()
+	if err != nil {
+		fmt.Println("Error closing the file:", err)
+		return
+	}
+
+	// Step 5: Optionally, read the file content back and display it
+}
+
 func ProcessVideoHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Printf("Url hit -> %v\n", req.URL)
 
@@ -371,31 +439,9 @@ func main() {
 	http.HandleFunc("/", helloWord)
 	http.HandleFunc("/Alert", SetNotifications) //
 	http.HandleFunc("/Video", ProcessVideoHandler)
+	http.HandleFunc("/Upload", uploadFile)
 	print("starting \n")
 	http.ListenAndServe(":8080", nil)
-	// Email credentials
-	/*
-			SMSSender := NewMessenger(os.Getenv("TEXTBELTURL"), os.Getenv("TEXTBELTKEY"))
-			message1 := CreateSMS("9085252880", "One step closer")
-			message2 := CreateSMS("6479132144", "Were getting a little closer")
-			message3 := CreateSMS("6463596966", "A couple steps closer")
-			message4 := CreateSMS("8574980409", "Another couple of steps")
-			GroupMessage := []textMessage{message1, message2, message3, message4}
-			fmt.Println("about to process")
-			errs := BatchMessages(GroupMessage, SMSSender)
-			fmt.Println(errs)
-
-
-		TeamMails := []string{"rbb98@scarletmail.rutgers.edu", "naweensarwari@gmail.com", "mingyu@bu.edu", "aymane.omari@nyu.edu"}
-		PostMan := NewMailer()
-		for _, Email := range TeamMails {
-			mail := newmail(Email, MedicalAlertStroke)
-			fmt.Printf("Message sent to %v", Email)
-			PostMan.Sendmail(mail)
-		}
-		//mail := newmail("rbb98@scarletmail.rutgers.edu", "mill due")
-		//PostMan.Sendmail(mail)
-	*/
 
 	fmt.Println("done")
 }

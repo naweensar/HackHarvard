@@ -1,0 +1,20 @@
+{
+    "inference_id": "88be45eb-60eb-4200-829a-6fdf8abca124",
+    "time": 0.10342322099995727,
+    "image": {
+        "width": 390,
+        "height": 280
+    },
+    "predictions": [
+        {
+            "x": 147.0,
+            "y": 125.0,
+            "width": 278.0,
+            "height": 210.0,
+            "confidence": 0.9083265066146851,
+            "class": "Falling",
+            "class_id": 1,
+            "detection_id": "fe482879-fed9-49c4-ac3d-b1ff4a3bebca"
+        }
+    ]
+}
