@@ -1,4 +1,3 @@
-/*
 package main
 
 import (
@@ -37,7 +36,6 @@ type messenger struct {
 	url    string
 	apiKey string
 }
-
 
 func (m *messenger) send(textMessage textMessage) TextResponse {
 	formData := url.Values{
@@ -112,19 +110,17 @@ func BatchMessages(input []textMessage, Provider Sender) []error {
 }
 func main() {
 	print("started\n")
-	// dont hard code later
-	SMSSender := NewMessenger(os.Getenv("TEXTBELTURL"), os.Getenv("TEXTBELTKEY"))
-	message1 := CreateSMS("9085252880", "One step closer")
-	message2 := CreateSMS("6479132144", "Were getting a little closer")
-	message3 := CreateSMS("6463596966", "A couple steps closer")
-	message4 := CreateSMS("8574980409", "Another couple of steps")
-	GroupMessage := []textMessage{message1, message2, message3, message4}
-	fmt.Println("about to process")
-	errs := BatchMessages(GroupMessage, SMSSender)
-	fmt.Println(errs)
-	//response := SMSSender.send(message)
-	//fmt.Printf("Response: %+v\n", response)
+	/*
+		SMSSender := NewMessenger(os.Getenv("TEXTBELTURL"), os.Getenv("TEXTBELTKEY"))
+		message1 := CreateSMS("9085252880", "One step closer")
+		message2 := CreateSMS("6479132144", "Were getting a little closer")
+		message3 := CreateSMS("6463596966", "A couple steps closer")
+		message4 := CreateSMS("8574980409", "Another couple of steps")
+		GroupMessage := []textMessage{message1, message2, message3, message4}
+		fmt.Println("about to process")
+		errs := BatchMessages(GroupMessage, SMSSender)
+		fmt.Println(errs)
+	*/
 
 	fmt.Println("Finished")
 }
-*/
