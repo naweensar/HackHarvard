@@ -1,0 +1,92 @@
+openapi: 3.0.0
+info:
+  title: Notification and Video Processing API
+  description: API to send notifications via SMS and email, and to process video feeds.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /:
+    get:
+      summary: "Hello World"
+      operationId: helloWorld
+      responses:
+        '200':
+          description: "Returns a Hello World message."
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Hello World
+  /Alert:
+    get:
+      summary: Get client notification details
+      operationId: getNotifications
+      parameters:
+        - in: query
+          name: client
+          required: true
+          schema:
+            type: string
+          description: Client ID for which notifications are fetched
+      responses:
+        '200':
+          description: "Returns the client's notifications data."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  NumberClients:
+                    type: array
+                    items:
+                      type: string
+                  MailClients:
+                    type: array
+                    items:
+                      type: string
+                  TotalCount:
+                    type: integer
+    put:
+      summary: Add notifications for a client
+      operationId: putNotification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                number:
+                  type: string
+      responses:
+        '200':
+          description: "Returns success message with added notification data."
+    post:
+      summary: Send notifications to clients
+      operationId: postNotification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                link:
+                  type: string
+                issue:
+                  type: string
+      responses:
+        '200':
+          description: "Notification messages sent to clients."
+  /Video:
+    get:
+      summary: Process video feed
+      operationId: processVideo
+      responses:
+        '200':
+          description: "Video feed processed successfully."
