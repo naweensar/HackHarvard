@@ -1,8 +1,41 @@
 {{!-- video-placeholder.handlebars --}}
 
 <main>
-  <h2>Video Monitoring is Coming Soon</h2>
+  <h2>Live Video Monitoring</h2>
   <p>Thank you for registering, {{email}}!</p>
   <p>We will be using the provided phone number, {{phone}}, for emergency alerts.</p>
-  <p>The real-time monitoring feature is under development and will be available soon.</p>
+
+  <div id="authorization-container">
+    <button id="start-monitoring" onclick="requestAuthorization()">Start Monitoring</button>
+  </div>
+
+  <div id="video-container" style="display:none;">
+    <video id="live-video" width="640" height="480" autoplay></video>
+  </div>
 </main>
+
+<script>
+  function requestAuthorization() {
+    const authorizationContainer = document.getElementById('authorization-container');
+    const videoContainer = document.getElementById('video-container');
+
+    if (confirm('Do you authorize AIDERS to use the camera for monitoring?')) {
+      authorizationContainer.style.display = 'none';
+      videoContainer.style.display = 'block';
+      
+      // Call the server to start the video feed
+      fetch('/start-video-feed')
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            console.log('Video feed started successfully');
+          } else {
+            alert('Error starting video feed');
+          }
+        })
+        .catch(err => console.error('Error:', err));
+    } else {
+      alert('Authorization denied. Monitoring will not start.');
+    }
+  }
+</script>

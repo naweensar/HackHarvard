@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import hbs from 'hbs';
+import { exec } from 'child_process';
 
 const app = express();
 
@@ -29,6 +30,18 @@ app.get('/features', (req, res) => {
 // Add route to serve the contact page
 app.get('/contact', (req, res) => {
   res.render('contact');
+});
+
+// Add route to start the video feed
+app.get('/start-video-feed', (req, res) => {
+  exec('python3 ../HackHarvard/machine_learning/app2.py', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error executing Python script: ${error}`);
+      return res.status(500).json({ success: false, message: 'Error starting video feed' });
+    }
+    console.log(`Python script output: ${stdout}`);
+    res.json({ success: true, message: 'Video feed started successfully' });
+  });
 });
 
 // Define the port
