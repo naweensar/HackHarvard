@@ -9,12 +9,12 @@ CLIENT = InferenceHTTPClient(
 
 # Perform inference on the image
 try:
-    result = CLIENT.infer("upload-3521894298.jpg", model_id="human-fall-e2evv/2")
+    result = CLIENT.infer("Output/upload-3521894298.jpg", model_id="human-fall-e2evv/2")
 
     # Check if the result is valid and contains predictions
     if result and isinstance(result, dict):
         predictions = result.get('predictions', [])
-
+        print(predictions)
         # Log success and save the result to a JSON file
         print("Inference successful. Saving results...")
         print("confidence: ",result["predictions"][0]["confidence"])

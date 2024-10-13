@@ -1,6 +1,6 @@
 {
-    "inference_id": "88be45eb-60eb-4200-829a-6fdf8abca124",
-    "time": 0.10342322099995727,
+    "inference_id": "50424c79-e547-4c29-93f8-e323530509da",
+    "time": 0.05334548900009395,
     "image": {
         "width": 390,
         "height": 280
@@ -14,7 +14,7 @@
             "confidence": 0.9083265066146851,
             "class": "Falling",
             "class_id": 1,
-            "detection_id": "fe482879-fed9-49c4-ac3d-b1ff4a3bebca"
+            "detection_id": "b82905f4-ae9e-42c5-88e5-87ec875381f1"
         }
     ]
 }
