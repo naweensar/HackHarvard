@@ -1,6 +1,26 @@
-# Your Hackathon Project
+# Aider - Your Real-Time Patient Monitoring System
 
-A web application using JavaScript, Handlebars, and CSS.
+<div align="center">
+ <img alt="Aider" height="200px" src="https://github.com/naweensar/HackHarvard/blob/main/public/images/aiders-logo.PNG">
+</div>
+
+
+
+***Team Members***
+
+Aymane Omari\
+Mingyu Shen\
+Naween Sarwani\
+Richard
+
+# Introduction 
+This project is a real-time monitoring solution using YOLOv8 to detect critical situations like falls and choking incidents in hospitals. The system aims to enhance patient safety by promptly alerting healthcare professionals when a patient is in distress.
+
+***Related Tech:***
+
+***#Python  #Go  #Yolov8  #Handlebars  #JavaScript  #CSS***
+
+
 
 ## Setup Instructions
 
@@ -21,9 +41,3 @@ npm start
 5. **Open your browser and visit**
 http://localhost:3000
 
-*Team Members*
-
-Aymane Omari
-Mingyu (Kerwin) Shen
-Naween Sarwani
-Richard 
