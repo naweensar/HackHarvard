@@ -32,14 +32,14 @@ app.get('/contact', (req, res) => {
   res.render('contact');
 });
 
-// Add route to start the video feed
+// Add route to start the video feed using JavaScript
 app.get('/start-video-feed', (req, res) => {
-  exec('python3 ../HackHarvard/machine_learning/app2.py', (error, stdout, stderr) => {
+  exec('node ./machine_learning/videoFeed.js', (error, stdout, stderr) => {
     if (error) {
-      console.error(`Error executing Python script: ${error}`);
+      console.error(`Error executing JavaScript script: ${error}`);
       return res.status(500).json({ success: false, message: 'Error starting video feed' });
     }
-    console.log(`Python script output: ${stdout}`);
+    console.log(`JavaScript script output: ${stdout}`);
     res.json({ success: true, message: 'Video feed started successfully' });
   });
 });

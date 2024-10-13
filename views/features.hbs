@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
   <style>
+    /* General Styling */
     body {
       font-family: 'Helvetica Neue', Arial, sans-serif;
       background-color: #8cb3e6;
@@ -17,6 +18,7 @@
       margin: 0;
       overflow-x: hidden;
     }
+
     header, footer {
       background-color: #8cb3e6;
       color: #fff;
@@ -25,6 +27,7 @@
       position: relative;
       z-index: 5;
     }
+
     .content-container {
       position: relative;
       top: 0;
@@ -35,43 +38,99 @@
       z-index: 5;
       padding: 20px 10px;
     }
+
     main {
       max-width: 1000px;
       margin: 50px auto;
       background-color: rgba(255, 255, 255, 0.95);
-      padding: 20px;
+      padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
       transition: all 0.5s ease-in-out;
     }
+
     h1 {
       color: #0047ab;
       text-align: center;
       transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
     }
+
     h2 {
       color: #ff9800;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
+
     .feature-section {
-      margin-bottom: 40px;
+      margin-bottom: 50px;
       padding: 10px;
     }
+
     .highlight {
       color: #00b4d8;
       font-weight: bold;
     }
+
     ul {
       list-style-type: disc;
       margin-left: 20px;
     }
+
     #three-animation {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 1;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Navigation Buttons */
+    .section-nav {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .section-nav button {
+      background-color: #0047ab;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .section-nav button:hover {
+      background-color: #003399;
+    }
+
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    /* Image Styling */
+    .step-container {
+      margin-bottom: 40px;
+    }
+
+    .step-text {
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .step-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -84,59 +143,103 @@
     {{> header}}
 
     <main>
-      <h1 data-aos="fade-up" data-aos-duration="1500">Features of AIDERS</h1>
-      <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="1500">AIDERS is an AI-driven healthcare monitoring system designed to provide continuous and proactive patient safety features. Leveraging advanced AI technology, AIDERS brings the following capabilities:</p>
+      <!-- Navigation for Clickable Sections -->
+      <div class="section-nav">
+        <button onclick="showSection('how-it-works')">How It Works</button>
+        <button onclick="showSection('hospital-home-use')">Hospital vs. Home Use</button>
+        <button onclick="showSection('features')">Key Features</button>
+      </div>
 
-      <!-- Feature Sections -->
-      <section class="feature-section" id="feature1" data-aos="fade-left" data-aos-duration="1500">
-        <h2>1. Real-Time Detection and Alerts</h2>
-        <p>AIDERS uses <span class="highlight">YOLOv8 object detection</span> to monitor real-time video feeds, identifying behaviors or movements indicative of medical emergencies like seizures or falls. The system is equipped with the following capabilities:</p>
-        <ul>
-          <li><strong>Continuous Monitoring:</strong> AIDERS uses camera feeds to observe patients at all times.</li>
-          <li><strong>High Precision Detection:</strong> Advanced AI detects unusual behaviors with a low false-positive rate.</li>
-          <li><strong>On-Screen Alerts:</strong> Visual notifications are provided to prompt immediate action from the user or caregiver.</li>
-        </ul>
+      <!-- Section 1: How AIDERS Works -->
+      <section id="how-it-works" class="content-section active" data-aos="fade-up" data-aos-duration="1500">
+        <h2>How AIDERS Works</h2>
+        <p>AIDERS works by using advanced AI technology to detect medical emergencies such as choking, falls, or seizures in real-time. The process involves the following steps:</p>
+
+        <!-- Step 1: Real-Time Detection -->
+        <div class="step-container" data-aos="fade-up" data-aos-duration="1500">
+          <p class="step-text"><strong>Step 1: Real-Time Detection</strong> - AIDERS uses computer vision and deep learning models to continuously monitor patients through camera feeds. It identifies critical health events like seizures, falls, or choking incidents.</p>
+          <img class="step-image" src="/images/chocking.png" alt="Real-time detection of choking">
+        </div>
+
+        <!-- Step 2: Patient Condition Verification (Formerly Step 4) -->
+        <div class="step-container" data-aos="fade-up" data-aos-duration="1500">
+          <p class="step-text"><strong>Step 2: Patient Condition Verification</strong> - If the patient is conscious, AIDERS will prompt the patient to confirm their condition using audio and visual prompts. This reduces false alarms and prevents unnecessary emergency interventions.</p>
+        </div>
+
+        <!-- Step 3: Alert and Notification (Explain Emergency) -->
+        <div class="step-container" data-aos="fade-up" data-aos-duration="1500">
+          <p class="step-text"><strong>Step 3: Alert and Notification</strong> - When an emergency is detected (e.g., detection confidence of 0.9 and patient non-responsiveness), AIDERS sends immediate alerts to designated medical personnel. Alerts are sent through multiple channels, including visual on-screen alerts, SMS, and emails to ensure prompt response.</p>
+          <img class="step-image" src="/images/Emergency-email.png" alt="Emergency Email Notification">
+          <img class="step-image" src="/images/Emergency-Phone.jpeg" alt="Emergency SMS Notification">
+        </div>
+
+        <!-- Step 4: Communication with Healthcare Staff (Formerly Step 3) -->
+        <div class="step-container" data-aos="fade-up" data-aos-duration="1500">
+          <p class="step-text"><strong>Step 4: Communication with Healthcare Staff</strong> - For hospital applications, AIDERS can send direct notifications to the nurse's station or relevant personnel via internal communication systems. In emergencies, the system can "ping" nearby healthcare professionals to respond promptly. The feedback mechanism ensures that healthcare workers acknowledge alerts, creating a safer environment by reducing the chances of missed emergencies.</p>
+        </div>
       </section>
 
-      <section class="feature-section" id="feature2" data-aos="fade-right" data-aos-duration="1500">
-        <h2>2. Interactive Patient Prompts</h2>
-        <p>To reduce unnecessary emergency responses, AIDERS is designed to <span class="highlight">interact with patients</span> during critical moments. Key features include:</p>
-        <ul>
-          <li><strong>Patient Response Verification:</strong> The system prompts the patient to confirm their condition if suspicious activity is detected.</li>
-          <li><strong>Reducing False Alarms:</strong> Alerts are dismissed if the patient responds affirmatively, ensuring emergency services are only contacted when necessary.</li>
-          <li><strong>Audio and Visual Prompts:</strong> Both audio and visual cues are used to capture the patient's attention.</li>
-        </ul>
+      <!-- Section 2: Hospital vs. Home Use -->
+      <section id="hospital-home-use" class="content-section" data-aos="fade-left" data-aos-duration="1500">
+        <h2>Hospital vs. Home Use</h2>
+        <div class="hospital-home-comparison">
+          <h3>In Hospitals</h3>
+          <p>AIDERS plays a critical role in enhancing patient safety. It provides continuous monitoring, notifying nurses and healthcare personnel in case of detected emergencies. The feedback mechanism allows nurses to confirm or dismiss alerts, improving accuracy and reducing alarm fatigue. By sending direct notifications to the nurses' station and maintaining logs, AIDERS ensures no emergencies are missed. Studies indicate that <span class="highlight">seizures and other critical health events are often missed or detected too late</span> due to the high workload of healthcare staff. AIDERS addresses this problem by automating detection, improving response times, and ultimately enhancing patient safety.</p>
+          
+          <h3>In Homes</h3>
+          <p>AIDERS offers the same detection capabilities but with limited expectations. It is ideal for elderly individuals or patients who need monitoring while staying at home. Emergency notifications are sent to family members and healthcare providers, ensuring safety in a home setting. However, the absence of medical professionals on-site means the response relies heavily on external contacts, which can impact the response time compared to a hospital environment.</p>
+        </div>
       </section>
 
-      <section class="feature-section" id="feature3" data-aos="fade-left" data-aos-duration="1500">
-        <h2>3. Automated Emergency Contact Alerts</h2>
-        <p>If a patient does not respond, AIDERS automatically contacts <span class="highlight">emergency services</span> and provides relevant information to expedite assistance. The automated features include:</p>
-        <ul>
-          <li><strong>Emergency Notifications:</strong> Designated contacts receive SMS or email alerts regarding the patient's status.</li>
-          <li><strong>Location Tracking:</strong> Provides precise patient location details to responders for swift intervention.</li>
-          <li><strong>Medical History Sharing:</strong> Sends crucial medical information to emergency personnel for informed decision-making.</li>
-        </ul>
+      <!-- Section 3: Key Features -->
+      <section id="features" class="content-section" data-aos="fade-right" data-aos-duration="1500">
+        <h2>Key Features of AIDERS</h2>
+
+        <!-- Feature 1: Real-Time Detection and Alerts -->
+        <div class="feature-section" data-aos="fade-up" data-aos-duration="1500">
+          <h3>1. Real-Time Detection and Alerts</h3>
+          <p>AIDERS uses <span class="highlight">YOLOv8 object detection</span> to monitor real-time video feeds, identifying behaviors or movements indicative of medical emergencies like seizures, falls, or choking. The system includes:</p>
+          <ul>
+            <li><strong>Continuous Monitoring:</strong> AIDERS uses camera feeds to observe patients at all times in hospitals, ensuring no critical moments are missed.</li>
+            <li><strong>High Precision Detection:</strong> Advanced AI detects unusual behaviors with a low false-positive rate, reducing alarm fatigue among healthcare workers.</li>
+            <li><strong>On-Screen Alerts:</strong> Visual notifications prompt immediate action from healthcare personnel in hospitals.</li>
+          </ul>
+        </div>
+
+        <!-- Feature 2: Interactive Patient Prompts -->
+        <div class="feature-section" data-aos="fade-up" data-aos-duration="1500">
+          <h3>2. Interactive Patient Prompts</h3>
+          <p>To reduce unnecessary emergency responses, AIDERS is designed to <span class="highlight">interact with patients</span> during critical moments. Key features include:</p>
+          <ul>
+            <li><strong>Patient Response Verification:</strong> The system prompts the patient to confirm their condition if suspicious activity is detected, minimizing false alarms.</li>
+            <li><strong>Reducing False Alarms:</strong> Alerts are dismissed if the patient responds affirmatively, ensuring emergency services are only contacted when necessary.</li>
+            <li><strong>Audio and Visual Prompts:</strong> Both audio and visual cues are used to capture the patient's attention, helping to reduce the workload of healthcare professionals in hospitals.</li>
+          </ul>
+        </div>
+
+        <!-- Feature 3: Automated Emergency Contact Alerts -->
+        <div class="feature-section" data-aos="fade-up" data-aos-duration="1500">
+          <h3>3. Automated Emergency Contact Alerts</h3>
+          <p>If a patient does not respond, AIDERS automatically contacts <span class="highlight">emergency services</span> and provides relevant information to expedite assistance. The automated features include:</p>
+          <ul>
+            <li><strong>Emergency Notifications:</strong> Designated contacts receive SMS or email alerts regarding the patient's status, ensuring hospital staff are quickly informed.</li>
+            <li><strong>Location Tracking:</strong> Provides precise patient location details within the hospital for swift intervention.</li>
+            <li><strong>Medical History Sharing:</strong> Sends crucial medical information to emergency personnel for informed decision-making.</li>
+          </ul>
+        </div>
+
+        <!-- Feature 4: Customizable Alert Settings -->
+        <div class="feature-section" data-aos="fade-up" data-aos-duration="1500">
+          <h3>4. Customizable Alert Settings</h3>
+          <p>AIDERS allows users to <span class="highlight">customize alert settings</span> based on their personal needs. The customization includes:</p>
+          <ul>
+            <li><strong>Adjustable Sensitivity:</strong> Sensitivity of detection can be adjusted according to the patient's health condition, suitable for different hospital departments.</li>
+            <li><strong>Response Time Settings:</strong> Users can define the time allowed for response before emergency services are notified, helping prioritize alerts effectively.</li>
+            <li><strong>Emergency Contact Preferences:</strong> Users can specify and manage the contacts to be notified during emergencies, ensuring the right healthcare personnel are alerted.</li>
+          </ul>
+        </div>
       </section>
 
-      <section class="feature-section" id="feature4" data-aos="fade-right" data-aos-duration="1500">
-        <h2>4. Customizable Alert Settings</h2>
-        <p>AIDERS allows users to <span class="highlight">customize alert settings</span> based on their personal needs. The customization includes:</p>
-        <ul>
-          <li><strong>Adjustable Sensitivity:</strong> Sensitivity of detection can be adjusted according to the patient's health condition.</li>
-          <li><strong>Response Time Settings:</strong> Users can define the time allowed for response before emergency services are notified.</li>
-          <li><strong>Emergency Contact Preferences:</strong> Users can specify and manage the contacts to be notified during emergencies.</li>
-        </ul>
-      </section>
-
-      <section class="feature-section" id="feature5" data-aos="fade-left" data-aos-duration="1500">
-        <h2>5. Data Privacy and Security</h2>
-        <p>At AIDERS, data privacy is of utmost importance. We ensure <span class="highlight">local processing</span> of all video data, which ensures that:</p>
-        <ul>
-          <li><strong>Local Data Processing:</strong> All analysis is conducted on the user’s device, with no external data transmission.</li>
-          <li><strong>HIPAA Compliance:</strong> Compliance with healthcare data regulations to maintain patient confidentiality.</li>
-          <li><strong>End-to-End Encryption:</strong> Patient data is encrypted to protect against unauthorized access.</li>
-        </ul>
-      </section>
     </main>
 
     {{> footer}}
@@ -158,7 +261,7 @@
 
     // Increase number of small particles to create a vibrant effect
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 5000; // Greatly increased for more visual impact
+    const particlesCount = 5000;
     const positions = new Float32Array(particlesCount * 3);
     for (let i = 0; i < particlesCount * 3; i++) {
       positions[i] = (Math.random() - 0.5) * 150;
@@ -190,5 +293,20 @@
       camera.updateProjectionMatrix();
     });
   </script>
+
+  <!-- JavaScript for Clickable Sections -->
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => {
+        if (section.id === sectionId) {
+          section.classList.add('active');
+        } else {
+          section.classList.remove('active');
+        }
+      });
+    }
+  </script>
+
 </body>
 </html>
