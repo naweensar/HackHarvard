@@ -145,6 +145,15 @@
   <!-- Features Section -->
   <div class="features-container">
     <h2>Why Choose AIDERS?</h2>
+
+    <!-- Boomerang Video Element -->
+    <div class="video-section" style="margin-bottom: 30px;">
+      <video autoplay loop muted width="80%" style="max-width: 800px; margin: 20px auto; display: block;">
+        <source src="/videos/aiders-demo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
     <section class="features-section">
       <div class="feature">
         <i class="fas fa-shield-alt"></i>
@@ -175,7 +184,7 @@
   <!-- Include Three.js library -->
   <script src="/js/three.min.js"></script>
   <!-- Include main script -->
-  <script>
+ <script>
     // Setting up the scene, camera, and renderer for the hero animation
     const heroScene = new THREE.Scene();
     const heroCamera = new THREE.PerspectiveCamera(75, window.innerWidth / 500, 0.1, 1000);
