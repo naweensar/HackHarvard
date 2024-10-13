@@ -390,7 +390,7 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("MIME Header: %+v\n", handler.Header)
 
 	// Create a temporary file within our temp directory that follows a particular naming pattern
-	tempFile, err := os.CreateTemp("Uploads", "upload-*."+fileType)
+	tempFile, err := os.CreateTemp("Uploads", "ML-output"+fileType)
 	if err != nil {
 		fmt.Println("Error creating temp file:", err)
 		http.Error(w, "Error creating temp file", http.StatusInternalServerError)
