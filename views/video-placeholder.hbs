@@ -1,41 +1,50 @@
 {{!-- video-placeholder.handlebars --}}
 
-<main>
-  <h2>Live Video Monitoring</h2>
-  <p>Thank you for registering, {{email}}!</p>
-  <p>We will be using the provided phone number, {{phone}}, for emergency alerts.</p>
-
-  <div id="authorization-container">
-    <button id="start-monitoring" onclick="requestAuthorization()">Start Monitoring</button>
-  </div>
-
-  <div id="video-container" style="display:none;">
-    <video id="live-video" width="640" height="480" autoplay></video>
-  </div>
-</main>
-
-<script>
-  function requestAuthorization() {
-    const authorizationContainer = document.getElementById('authorization-container');
-    const videoContainer = document.getElementById('video-container');
-
-    if (confirm('Do you authorize AIDERS to use the camera for monitoring?')) {
-      authorizationContainer.style.display = 'none';
-      videoContainer.style.display = 'block';
-      
-      // Call the server to start the video feed
-      fetch('/start-video-feed')
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            console.log('Video feed started successfully');
-          } else {
-            alert('Error starting video feed');
-          }
-        })
-        .catch(err => console.error('Error:', err));
-    } else {
-      alert('Authorization denied. Monitoring will not start.');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AIDERS: Thank You!</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #8cb3e6;
+      color: #333;
+      line-height: 1.6;
+      margin: 0;
+      overflow-x: hidden;
     }
-  }
-</script>
+
+    header, footer {
+      background-color: #8cb3e6;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  
+  {{> header}}
+
+  <main style="max-width: 600px; margin: 50px auto; background-color: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);">
+    <h2 style="color: #0047ab; text-align: center;">Thank You for Your Interest!</h2>
+    <p style="font-size: 1.2rem; line-height: 1.8; color: #333; text-align: center;">
+      We will send you more information shortly to the email address provided.
+    </p>
+    <p style="font-size: 1.2rem; line-height: 1.8; color: #333; text-align: center;">
+      Please check your inbox for further details!
+    </p>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="/" style="background-color: #0047ab; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease;">
+        Back to Home
+      </a>
+    </div>
+  </main>
+
+  {{> footer}}
+
+</body>
+</html>

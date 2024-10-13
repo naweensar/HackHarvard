@@ -60,7 +60,7 @@
   <main>
     <h2>Sign Up to Use the Service</h2>
     <p>By signing up, you agree to allow AIDERS to use the camera on your device for monitoring purposes. If you are in a dangerous situation, the system will notify your designated emergency contacts. You will also receive follow-up email documentation.</p>
-    <p><a href="/terms.pdf" target="_blank">Read Terms and Conditions</a></p>
+    <p><a href="/docs/terms.pdf" target="_blank">Read Terms and Conditions</a></p>
 
     <form id="signup-form" action="/register" method="POST">
       <label for="userType">Are you a:</label>
@@ -73,17 +73,17 @@
       <!-- Patient Form Section -->
       <div id="patient-form" class="hidden">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+        <input type="email" id="email" name="email"><br><br>
 
         <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" required><br><br>
+        <input type="tel" id="phone" name="phone"><br><br>
 
         <div id="emergency-contacts">
           <label for="contact1-phone">Emergency Contact 1 - Phone:</label>
-          <input type="tel" id="contact1-phone" name="contacts[0][phone]" required><br><br>
+          <input type="tel" id="contact1-phone" name="contacts[0][phone]"><br><br>
 
           <label for="contact1-email">Emergency Contact 1 - Email:</label>
-          <input type="email" id="contact1-email" name="contacts[0][email]" required><br><br>
+          <input type="email" id="contact1-email" name="contacts[0][email]"><br><br>
         </div>
         <button type="button" onclick="addContact()">Add More Contacts</button><br><br>
       </div>
@@ -91,16 +91,16 @@
       <!-- Hospital Form Section -->
       <div id="hospital-form" class="hidden">
         <label for="hospitalName">Hospital Name:</label>
-        <input type="text" id="hospitalName" name="hospitalName" required><br><br>
+        <input type="text" id="hospitalName" name="hospitalName"><br><br>
 
         <label for="hospitalEmail">Hospital Email:</label>
-        <input type="email" id="hospitalEmail" name="hospitalEmail" required><br><br>
+        <input type="email" id="hospitalEmail" name="hospitalEmail"><br><br>
 
         <label for="hospitalPhone">Hospital Phone Number:</label>
-        <input type="tel" id="hospitalPhone" name="hospitalPhone" required><br><br>
+        <input type="tel" id="hospitalPhone" name="hospitalPhone"><br><br>
 
         <label for="use-case">Purpose of Use:</label>
-        <select id="use-case" name="useCase" required onchange="handleUseCaseChange()">
+        <select id="use-case" name="useCase" onchange="handleUseCaseChange()">
           <option value="" disabled selected>Select an option</option>
           <option value="waiting-room">Waiting Room</option>
           <option value="icu">Intensive Care Unit (ICU)</option>
@@ -132,9 +132,34 @@
       if (userType === 'patient') {
         patientForm.classList.remove('hidden');
         hospitalForm.classList.add('hidden');
+
+        // Add required attributes to patient form fields
+        document.getElementById('email').required = true;
+        document.getElementById('phone').required = true;
+        document.getElementById('contact1-phone').required = true;
+        document.getElementById('contact1-email').required = true;
+
+        // Remove required attributes from hospital form fields
+        document.getElementById('hospitalName').required = false;
+        document.getElementById('hospitalEmail').required = false;
+        document.getElementById('hospitalPhone').required = false;
+        document.getElementById('use-case').required = false;
+
       } else if (userType === 'hospital') {
         hospitalForm.classList.remove('hidden');
         patientForm.classList.add('hidden');
+
+        // Add required attributes to hospital form fields
+        document.getElementById('hospitalName').required = true;
+        document.getElementById('hospitalEmail').required = true;
+        document.getElementById('hospitalPhone').required = true;
+        document.getElementById('use-case').required = true;
+
+        // Remove required attributes from patient form fields
+        document.getElementById('email').required = false;
+        document.getElementById('phone').required = false;
+        document.getElementById('contact1-phone').required = false;
+        document.getElementById('contact1-email').required = false;
       } else {
         patientForm.classList.add('hidden');
         hospitalForm.classList.add('hidden');
@@ -147,8 +172,10 @@
 
       if (useCase === 'other') {
         otherUseDiv.classList.remove('hidden');
+        document.getElementById('otherUseDetails').required = true;
       } else {
         otherUseDiv.classList.add('hidden');
+        document.getElementById('otherUseDetails').required = false;
       }
     }
 
